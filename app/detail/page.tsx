@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
@@ -38,7 +39,7 @@ const PokemonDetail = () => {
     if (name) {
       fetchPokemon();
     }
-  }, [name]);
+  }, [name,router]);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
