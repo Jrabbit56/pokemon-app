@@ -27,7 +27,6 @@ export default function Detail({params}: {params: {name: string}}) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
   const [pokemonIndex, setPokemonIndex] = useState(0)
-  const [clickCount, setClickCount] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,7 +60,6 @@ export default function Detail({params}: {params: {name: string}}) {
   const fetchNextPokemon = async () => {
     try {
       if (pokemonData) {
-        setClickCount(clickCount)
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonData?.id + 1}`)
         setPokemonData(response.data)
         setPokemonIndex(pokemonIndex + 1)
@@ -132,7 +130,7 @@ return (
           </div>
 
           <div className="flex justify-between w-full">
-            <button className={`bg-blue-500 text-white px-4 py-2 rounded-lg ${pokemonData?.id === 1 ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={fetchPreviousPokemon} >Prev</button>
+            <button className={`bg-blue-500 text-white px-4 py-2 rounded-lg ${pokemonData?.id === 1 ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={fetchPreviousPokemon} disabled={pokemonData?.id === 1}>Prev</button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={fetchNextPokemon} >Next</button>
           </div>
           <button className="bg-gray-500 text-white px-4 py-2 mt-4 rounded-lg"  onClick={() => router.push('/')}>Return</button>
