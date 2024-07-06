@@ -132,7 +132,7 @@ return (
           </div>
 
           <div className="flex justify-between w-full">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={fetchPreviousPokemon}>Prev</button>
+            <button className={`bg-blue-500 text-white px-4 py-2 rounded-lg ${pokemonData?.id === 1 ? 'opacity-50 cursor-not-allowed' : ''}`} onClick={fetchPreviousPokemon} >Prev</button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg" onClick={fetchNextPokemon} >Next</button>
           </div>
           <button className="bg-gray-500 text-white px-4 py-2 mt-4 rounded-lg"  onClick={() => router.push('/')}>Return</button>
